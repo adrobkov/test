@@ -1,6 +1,5 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {FamilyInterface, ParentType} from 'src/family/family.interface';
-import {isArray} from "util";
 
 @Injectable()
 export class FamilyService {
@@ -333,6 +332,6 @@ export class FamilyService {
   }
 
   compareArrayAndNumber(arr: [number, number], num: number): boolean {
-    return arr.some((v, i) => v === num);
+    return arr.some((v) => v === num);
   }
 }

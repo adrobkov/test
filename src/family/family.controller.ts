@@ -17,7 +17,7 @@ export class FamilyController {
     return body;
   }
 
-  @Get('incestuous-marriage')
+  @Get('incestuous')
   displayIncestuous() {
     return this.FamilyService.displayIncestuous();
   }
