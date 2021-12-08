@@ -1,0 +1,406 @@
+{
+	"info": {
+		"_postman_id": "41298773-b79f-4f3e-a50d-9b8eb342db46",
+		"name": "Family",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create all",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 101,\r\n    \"name\": \"Иванов Петр\",\r\n    \"gender\": \"MALE\",\r\n    \"parents\": [\r\n      302,\r\n      134\r\n    ]\r\n  },\r\n  {\r\n    \"id\": 171,\r\n    \"name\": \"Иванова Наталья\",\r\n    \"gender\": \"FEMALE\",\r\n    \"parents\": [\r\n      302,\r\n      134\r\n    ]\r\n  },\r\n  {\r\n    \"id\": 302,\r\n    \"name\": \"Иванов Сергей\",\r\n    \"gender\": \"MALE\",\r\n    \"parents\": []\r\n  },\r\n  {\r\n    \"id\": 107,\r\n    \"name\": \"Иванов Николай\",\r\n    \"gender\": \"MALE\",\r\n    \"parents\": []\r\n  },\r\n  {\r\n    \"id\": 345,\r\n    \"name\": \"Иванов Олег\",\r\n    \"gender\": \"MALE\",\r\n    \"parents\": [\r\n      302,\r\n      190\r\n    ]\r\n  },\r\n  {\r\n    \"id\": 289,\r\n    \"name\": \"Иванова Светлана\",\r\n    \"gender\": \"FEMALE\",\r\n    \"parents\": []\r\n  },\r\n  {\r\n    \"id\": 134,\r\n    \"name\": \"Иванова Оксана\",\r\n    \"gender\": \"FEMALE\",\r\n    \"parents\": [\r\n      278\r\n    ]\r\n  },\r\n  {\r\n    \"id\": 190,\r\n    \"name\": \"Петрова Нина\",\r\n    \"gender\": \"FEMALE\",\r\n    \"parents\": []\r\n  },\r\n  {\r\n    \"id\": 278,\r\n    \"name\": \"Иванов Дмитрий\",\r\n    \"gender\": \"MALE\",\r\n    \"parents\": [\r\n      107,\r\n      289\r\n    ]\r\n  },\r\n  {\r\n    \"id\": 300,\r\n    \"name\": \"Иванова Алекса\",\r\n    \"gender\": \"FEMALE\",\r\n    \"parents\": [101, 171]\r\n  }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/createall",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"createall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create all (with validation)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t{\r\n\t\t\"id\": 101,\r\n\t\t\"name\": \"Иванов Петр\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t302,\r\n\t\t\t134\r\n\t\t]\r\n\t},\r\n\t{\r\n\t\t\"id\": 171,\r\n\t\t\"name\": \"Иванова Наталья\",\r\n\t\t\"gender\": \"FEMALE\",\r\n\t\t\"parents\": [\r\n\t\t\t302,\r\n\t\t\t134\r\n\t\t]\r\n\t},\r\n\t{\r\n\t\t\"id\": 302,\r\n\t\t\"name\": \"Иванов Сергей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": []\r\n\t},\r\n\t{\r\n\t\t\"id\": 107,\r\n\t\t\"name\": \"Иванов Николай\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": []\r\n\t},\r\n\t{\r\n\t\t\"id\": 345,\r\n\t\t\"name\": \"Иванов Олег\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t302,\r\n\t\t\t190\r\n\t\t]\r\n\t},\r\n\t{\r\n\t\t\"id\": 289,\r\n\t\t\"name\": \"Иванова Светлана\",\r\n\t\t\"gender\": \"FEMALE\",\r\n\t\t\"parents\": []\r\n\t},\r\n\t{\r\n\t\t\"id\": 134,\r\n\t\t\"name\": \"Иванова Оксана\",\r\n\t\t\"gender\": \"FEMALE\",\r\n\t\t\"parents\": [\r\n\t\t\t278\r\n\t\t]\r\n\t},\r\n\t{\r\n\t\t\"id\": 190,\r\n\t\t\"name\": \"Петрова Нина\",\r\n\t\t\"gender\": \"FEMALE\",\r\n\t\t\"parents\": []\r\n\t},\r\n\t{\r\n\t\t\"id\": 278,\r\n\t\t\"name\": \"Иванов Дмитрий\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t107,\r\n\t\t\t289\r\n\t\t]\r\n\t}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/createall?validation=true",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"createall"
+					],
+					"query": [
+						{
+							"key": "validation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create one",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"id\": 332,\r\n\t\t\"name\": \"Жиганов Алексей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t332\r\n\t\t]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/create",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create one (with validation)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"id\": 333,\r\n\t\t\"name\": \"Жиганов Алексей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t331,\r\n            332\r\n\t\t]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/create?validation=true",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"create"
+					],
+					"query": [
+						{
+							"key": "validation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all (with validation)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000?validation=true",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"query": [
+						{
+							"key": "validation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000/332",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"332"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one (with validation)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000/333?validation=true",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"333"
+					],
+					"query": [
+						{
+							"key": "validation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update one",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"id\": 333,\r\n\t\t\"name\": \"Навальный Алексей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t333,\r\n\t\t\t111\r\n\t\t]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/333",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"333"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update one (with validation)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"id\": 332,\r\n\t\t\"name\": \"Навальный Алексей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t333,\r\n\t\t\t111\r\n\t\t]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/332?validation=true",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"332"
+					],
+					"query": [
+						{
+							"key": "validation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete one",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"id\": 332,\r\n\t\t\"name\": \"Навальный Алексей\",\r\n\t\t\"gender\": \"MALE\",\r\n\t\t\"parents\": [\r\n\t\t\t333,\r\n\t\t\t111\r\n\t\t]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://79.170.163.247:3000/332",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"332"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "progenies by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000/progenies/289",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"progenies",
+						"289"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brothers and sisters by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000/brothers-and-sisters/101",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"brothers-and-sisters",
+						"101"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "incestuous",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://79.170.163.247:3000/incestuous",
+					"protocol": "http",
+					"host": [
+						"79",
+						"170",
+						"163",
+						"247"
+					],
+					"port": "3000",
+					"path": [
+						"incestuous"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

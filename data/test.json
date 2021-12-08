@@ -1,0 +1,97 @@
+[
+  {
+    "id": 101,
+    "name": "Иванов Петр",
+    "gender": "MALE",
+    "parents": [
+      302,
+      134
+    ]
+  },
+  {
+    "id": 171,
+    "name": "Иванова Наталья",
+    "gender": "FEMALE",
+    "parents": [
+      302,
+      134
+    ]
+  },
+  {
+    "id": 302,
+    "name": "Иванов Сергей",
+    "gender": "MALE",
+    "parents": []
+  },
+  {
+    "id": 107,
+    "name": "Иванов Николай",
+    "gender": "MALE",
+    "parents": []
+  },
+  {
+    "id": 345,
+    "name": "Иванов Олег",
+    "gender": "MALE",
+    "parents": [
+      302,
+      190
+    ]
+  },
+  {
+    "id": 289,
+    "name": "Иванова Светлана",
+    "gender": "FEMALE",
+    "parents": []
+  },
+  {
+    "id": 134,
+    "name": "Иванова Оксана",
+    "gender": "FEMALE",
+    "parents": [
+      278
+    ]
+  },
+  {
+    "id": 190,
+    "name": "Петрова Нина",
+    "gender": "FEMALE",
+    "parents": []
+  },
+  {
+    "id": 278,
+    "name": "Иванов Дмитрий",
+    "gender": "MALE",
+    "parents": [
+      107,
+      289
+    ]
+  },
+  {
+    "id": 300,
+    "name": "Иванова Александра",
+    "gender": "FEMALE",
+    "parents": [
+      101,
+      171
+    ]
+  },
+  {
+    "id": 322,
+    "name": "Иванова Олеся",
+    "gender": "FEMALE",
+    "parents": [
+      300,
+      134
+    ]
+  },
+  {
+    "id": 366,
+    "name": "Сидорова Алёна",
+    "gender": "FEMALE",
+    "parents": [
+      101,
+      302
+    ]
+  }
+]
