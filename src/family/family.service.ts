@@ -120,6 +120,7 @@ export class FamilyService {
             );
           }
           father = true;
+          arrayParent.push(parentId);
         }
         if (setParentWithGender.has(parentId)) {
           if (mather) {
@@ -129,6 +130,7 @@ export class FamilyService {
             );
           }
           mather = true;
+          arrayParent.push(parentId);
         }
       });
       if (arrayParent.length !== person.parents.length) {
