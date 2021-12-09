@@ -7,3 +7,11 @@ export interface FamilyInterface {
   gender: GenderType;
   parents: ParentType;
 }
+
+export interface GenusInterface {
+  id: number;
+  genus: number[];
+  generation: number[];
+  level: number;
+  incest: boolean;
+}

@@ -1,6 +1,6 @@
-import {Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Patch, Post, Query} from '@nestjs/common';
-import {FamilyService} from 'src/family/family.service';
-import {FamilyInterface} from 'src/family/family.interface';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import { FamilyService } from 'src/family/family.service';
+import { FamilyInterface } from 'src/family/family.interface';
 
 @Controller()
 export class FamilyController {
@@ -18,8 +18,8 @@ export class FamilyController {
   }
 
   @Get('incestuous')
-  displayIncestuous() {
-    return this.FamilyService.displayIncestuous();
+  displayIncestuousMarriage() {
+    return this.FamilyService.displayIncestuousMarriage();
   }
 
   @Get(':id')

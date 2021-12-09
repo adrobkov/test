@@ -1,9 +1,8 @@
-import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
-import {FamilyInterface, ParentType} from 'src/family/family.interface';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { FamilyInterface, GenusInterface, ParentType } from 'src/family/family.interface';
 
 @Injectable()
 export class FamilyService {
-
   private trees: Array<FamilyInterface> = [];
 
   createOne(newPerson: FamilyInterface, validation = false): FamilyInterface {
@@ -43,7 +42,7 @@ export class FamilyService {
   getAll(validation = false): Array<FamilyInterface> {
     if (validation) {
       this.trees.map((person) => {
-        console.log(person)
+        console.log(person);
         if (person.parents.length > 0) {
           this.validateCountParent(person);
           this.validateSelfParent(person);
@@ -105,7 +104,7 @@ export class FamilyService {
   validateParentOneGenderOrNotFound(person: FamilyInterface): void {
     if (this.trees.length > 1) {
       let setParentWithGender = new Set();
-      this.trees.map(({id, gender}) => {
+      this.trees.map(({ id, gender }) => {
         setParentWithGender.add(gender === 'MALE' ? -id : id);
       });
       let arrayParent: Array<number | any> = [];
@@ -148,7 +147,7 @@ export class FamilyService {
     if (!person) {
       throw new HttpException('Член родословной с таким id не найден', HttpStatus.NOT_FOUND);
     }
-    this.trees.map(({id, name, parents}) => {
+    this.trees.map(({ id, name, parents }) => {
       parents.map((parentId) => {
         if (cid === parentId) {
           list.push(name);
@@ -156,10 +155,10 @@ export class FamilyService {
         }
       });
     });
-    let set = new Set;
-    list.map(id => set.add(id));
+    let set = new Set();
+    list.map((id) => set.add(id));
     for (let name of set) {
-      result = result + name + '\n'
+      result = result + name + '\n';
     }
     return result;
   }
@@ -174,7 +173,7 @@ export class FamilyService {
       return;
     }
     if (person.parents.length === 1) {
-      this.trees.map(({name, gender, parents}) => {
+      this.trees.map(({ name, gender, parents }) => {
         parents.map((parentId) => {
           if (parentId === person.parents[0]) {
             let type = gender === 'FEMALE' ? 'сводная' : 'сводный';
@@ -185,7 +184,7 @@ export class FamilyService {
       return;
     }
     let type = '';
-    this.trees.map(({id, name, gender, parents}) => {
+    this.trees.map(({ id, name, gender, parents }) => {
       if (id !== cid) {
         let p1 = parents.find((pid) => pid === person.parents[0]);
         let p2 = parents.find((pid) => pid === person.parents[1]);
@@ -204,136 +203,80 @@ export class FamilyService {
     return list.join('\n');
   }
 
-  displayIncestuous(): string | undefined {
-    let listArray: string[] = [];
-    for (let {name, parents} of this.trees) {
-      let parents1 = this.parentsById(parents[0]);
-      let parents2 = this.parentsById(parents[1]);
-      //Родные и сводные братья и сестры
-      if (this.compare(parents1, parents2)) {
-        listArray.push(name);
-      }
-      //Родители
-      if (this.compare(parents, parents2)) {
-        listArray.push(name);
-      }
-      if (this.compare(parents1, parents)) {
-        listArray.push(name);
-      }
-      //Родители родителей
-      if (this.countParents(parents1) === 2) {
-        if (this.compare(parents, this.parentsById(parents1[0]))) {
-          listArray.push(name);
+  displayIncestuousMarriage(): string | undefined {
+    let level: number = 4; //уровень вложенности, по которому нужна проверка
+    let result: GenusInterface;
+    let names: string[] = [];
+    for (let { id, name, parents } of this.trees) {
+      if (parents.length !== 0) {
+        // if (id === 1312) {
+        let person: GenusInterface = { id, genus: parents, generation: [], level, incest: false }; //0 поколение
+        for (let i = 0; i < this.countParents(parents); i++) {
+          person.generation.push(0);
         }
-        if (this.compare(parents, this.parentsById(parents1[1]))) {
-          listArray.push(name);
+        // console.log('1', name, person);
+        person = this.parentsToGenus(person);
+        result = person;
+        // console.log('2', name, person);
+        if (result.incest) {
+          names.push(name);
         }
-        if (this.compare(parents1, this.parentsById(parents1[0]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents1, this.parentsById(parents1[1]))) {
-          listArray.push(name);
-        }
-      }
-      if (this.countParents(parents1) === 1) {
-        if (this.compare(parents, this.parentsById(parents1[0]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents1, this.parentsById(parents1[0]))) {
-          listArray.push(name);
-        }
-      }
-      if (this.countParents(parents2) === 2) {
-        if (this.compare(parents, this.parentsById(parents2[0]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents, this.parentsById(parents2[1]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents2, this.parentsById(parents2[0]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents2, this.parentsById(parents2[1]))) {
-          listArray.push(name);
-        }
-      }
-      if (this.countParents(parents2) === 1) {
-        if (this.compare(parents, this.parentsById(parents2[0]))) {
-          listArray.push(name);
-        }
-        if (this.compare(parents2, this.parentsById(parents2[0]))) {
-          listArray.push(name);
-        }
+        // }
       }
     }
-    let result = '';
-    let set = new Set;
-    listArray.map(id => set.add(id));
-    for (let name of set) {
-      result = result + name + '\n'
-    }
-    return result;
+    return names.join('\n');
   }
 
-  parentsById(pid: number): ParentType {
-    let result: ParentType
-    this.trees.map(({id, parents}) => {
-      if (id === pid) {
-        result = parents.sort();
+  parentsToGenus(person: GenusInterface): GenusInterface {
+    let checkedParent: number[] = [];
+    let checkedGenus: number[] = [];
+    let gen = person.generation[person.generation.length - 1] + 1; //Поколение, которое ищу
+    let iPrevGen = person.generation.indexOf(gen - 1); //Индекс предыдущего поколения в genus
+    // console.log('Индекс с которого начинается перебор в массиве person.genus', iPrevGen);
+    for (let p = iPrevGen; p < person.genus.length; p++) {
+      if (person.genus[p] > 0) {
+        this.trees.map(({ id, parents }) => {
+          if (person.genus[p] === id) {
+            let countParents = this.countParents(parents);
+            if (countParents !== 0) {
+              for (let i = 0; i < countParents; i++) {
+                checkedParent.push(parents[i]);
+                checkedGenus.push(gen);
+              }
+            } else {
+              checkedParent.push(-Math.floor(1 + Math.random() * (9999 + 1 - 1)));
+              checkedGenus.push(gen);
+            }
+          }
+        });
       }
+    }
+    checkedParent.map((cid) => {
+      person.genus.push(cid);
     });
-    return result;
+    checkedGenus.map((cid) => {
+      person.generation.push(cid);
+    });
+    let chekSet: Set<number> = new Set();
+    person.genus.map((id) => chekSet.add(id));
+    if (chekSet.size !== person.genus.length) {
+      person.incest = true;
+    }
+    if (!person.incest) {
+      for (let i = gen; i < person.level; i++) {
+        if (checkedParent.length !== 0) {
+          this.parentsToGenus(person);
+        }
+      }
+    }
+    return person;
   }
 
-  countParents(parents: ParentType): number{
+  countParents(parents: ParentType): number {
     let result = 0;
     if (Array.isArray(parents)) {
       result = parents.length;
     }
     return result;
-  }
-
-  compare(parents1: ParentType, parents2: ParentType): boolean {
-    if (!Array.isArray(parents1) || !Array.isArray(parents2)) {
-      return false;
-    }
-    if (parents1.length === 2 && parents2.length === 2) {
-      if (this.compare2Arrays([parents1[0], parents1[1]], [parents2[0], parents2[1]])) {
-        return true;
-      }
-      if (this.compareArrayAndNumber([parents1[0], parents1[1]], parents2[0])) {
-        return true;
-      }
-      if (this.compareArrayAndNumber([parents1[0], parents1[1]], parents2[1])) {
-        return true;
-      }
-      if (this.compareArrayAndNumber([parents2[0], parents2[1]], parents1[0])) {
-        return true;
-      }
-      if (this.compareArrayAndNumber([parents2[0], parents2[1]], parents1[1])) {
-        return true;
-      }
-    } else if (parents1.length === 1 && parents2.length === 2) {
-      if (this.compareArrayAndNumber([parents2[0], parents2[1]], parents1[0])) {
-        return true;
-      }
-    } else if (parents1.length === 2 && parents2.length === 1) {
-      if (this.compareArrayAndNumber([parents1[0], parents1[1]], parents2[0])) {
-        return true;
-      }
-    } else if (parents1.length === 1 && parents2.length === 1) {
-      if (parents1[0] === parents2[0]) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  compare2Arrays(arr1: [number, number], arr2: [number, number]): boolean {
-    return arr1.length == arr2.length && arr1.every((v, i) => v === arr2[i]);
-  }
-
-  compareArrayAndNumber(arr: [number, number], num: number): boolean {
-    return arr.some((v) => v === num);
   }
 }

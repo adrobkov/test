@@ -77,14 +77,80 @@
     ]
   },
   {
-    "id": 322,
-    "name": "Иванова Олеся",
+    "id": 1,
+    "name": "Петрова Олеся",
+    "gender": "FEMALE",
+    "parents": []
+  },
+  {
+    "id": 2,
+    "name": "Петров Дмитрий",
+    "gender": "MALE",
+    "parents": []
+  },
+  {
+    "id": 4,
+    "name": "Федорова Светлана",
+    "gender": "FEMALE",
+    "parents": []
+  },
+  {
+    "id": 5,
+    "name": "Макаров Михаил",
+    "gender": "MALE",
+    "parents": []
+  },
+  {
+    "id": 3,
+    "name": "Змагаров Михаил",
+    "gender": "MALE",
+    "parents": []
+  },
+  {
+    "id": 34,
+    "name": "Змагаров Оксана",
     "gender": "FEMALE",
     "parents": [
-      300,
-      134
+      3,
+      4
     ]
   },
+  {
+    "id": 12,
+    "name": "Петрова Александра",
+    "gender": "FEMALE",
+    "parents": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 312,
+    "name": "Змагарова Анна",
+    "gender": "FEMALE",
+    "parents": [
+      12,
+      3
+    ]
+  },
+  {
+    "id": 512,
+    "name": "Макаров Николай",
+    "gender": "MALE",
+    "parents": [
+      5,
+      12
+    ]
+  },
+  {
+    "id": 1312,
+    "name": "Петрова Дина",
+    "gender": "FEMALE",
+    "parents": [
+      312,
+      2
+    ]
+  }   ,
   {
     "id": 366,
     "name": "Сидорова Алёна",
